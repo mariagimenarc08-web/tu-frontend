@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch('/api/auth/perfil', { headers: { Authorization: `Bearer ${token}` } });
+      const res = await fetch('https://tu-backend-8bl4.onrender.com/auth/perfil', { headers: { Authorization: `Bearer ${token}` } });
       if (res.ok) {
         const data = await res.json();
         setUser(data);
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    const res = await fetch('/api/auth/login', {
+    const res = await fetch('https://tu-backend-8bl4.onrender.com/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email.toLowerCase().trim(), password })
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (data) => {
-    const res = await fetch('/api/auth/registro', {
+    const res = await fetch('https://tu-backend-8bl4.onrender.com/auth/registro', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...data, email: data.email.toLowerCase().trim() })
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
 
   const refreshProfile = useCallback(async () => {
     try {
-      const res = await fetch('/api/auth/perfil', { headers: { Authorization: `Bearer ${token}` } });
+      const res = await fetch('https://tu-backend-8bl4.onrender.com/auth/perfil', { headers: { Authorization: `Bearer ${token}` } });
       if (res.ok) setUser(await res.json());
     } catch (e) { console.error(e); }
   }, [token]);
